@@ -107,11 +107,15 @@ tftp> quit
 1. Connect the Ethernet cable to the board's PHY.
 
 2. Copy the kernel Image(uImage), dtb files to the /tftpboot directory of your Host Machine (x86 intel Linux)
-
+```
+sandeeptux@sandeeplinux:/tftpboot$ ls
+am335x-boneblack.dtb  uImage
+```
 3. Power on your BeagleBone black board. Hit any key to stop autoboot and enter U-boot commandline.
 
 4. Use the following settings for U-Boot environment variables bootargs and bootcmd to boot into the kernel. 
-```
+
+ ```
 => setenv serverip 192.168.1.2
 => setenv ipaddr 192.168.1.4
 => setenv bootargs console=ttyO0,115200n8 root=/dev/mmcblk0p2 ro rootfstype=ext4 rootwait
@@ -119,6 +123,8 @@ tftp> quit
 => tftpboot 0x80007FC0 uImage 
 => bootm 0x80007FC0 - 0x80F80000
 ```
+### Note:Why uImage ? 
+### Ans- An uImage includes a U-Boot header which contains the load address that the kernel should be loaded & A uImage file is a kernel with a modified header for u-boot. A tool called mkimage is used to convert a zImage (regular kernel compressed image) to a uImage(u-boot image)file. And No, zImage files, as they are, are not compatible with U-Boot.An uImage can generate by using this Command called `make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabihf- uImage LOADADDR=0X80008000 -j4` while Kernel complation process.
 
 ### Example In my BBB board :
 ```
