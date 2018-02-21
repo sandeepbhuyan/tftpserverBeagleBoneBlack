@@ -123,6 +123,8 @@ am335x-boneblack.dtb  uImage
 => tftpboot 0x80007FC0 uImage 
 => bootm 0x80007FC0 - 0x80F80000
 ```
+### The example shown is to use the filesystem already in place (i.e. ext4 on mmcblk0p2). The preferred option is to export a rootFS filesystem. 
+
 ### Note:Why uImage ? 
 ### Ans- An uImage includes a U-Boot header which contains the load address that the kernel should be loaded & A uImage file is a kernel with a modified header for u-boot. A tool called mkimage is used to convert a zImage (regular kernel compressed image) to a uImage(u-boot image)file. And No, zImage files, as they are, are not compatible with U-Boot.An uImage can generate by using this Command called `make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabihf- uImage LOADADDR=0X80008000 -j4` while Kernel complation process.
 
