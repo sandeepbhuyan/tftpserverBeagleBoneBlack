@@ -55,7 +55,13 @@ a. Install following packages.
 
 `sandeeptux@sandeeplinux:~$ sudo apt-get install xinetd tftpd tftp`
 
-b. Create /etc/xinetd.d/tftp and put the following lines & save it.
+b. Create a folder for example in my case(tftpboot) (i have created in root folder) `/tftpboot` this should match whatever you have to give in server_args. In my case  it is tftpboot. 
+```
+sandeeptux@sandeeplinux:~$ sudo mkdir /tftpboot
+sandeeptux@sandeeplinux:~$ sudo chmod -R 777 /tftpboot/
+sadeeptux@sandeeplinux:~$ sudo chown -R nobody /tftpboot/
+```
+c. Create /etc/xinetd.d/tftp and put the following lines & save it.
 
 `sandeeptux@sandeeplinux:~$ sudo vi /etc/xinetd.d/tftp`
 
@@ -71,12 +77,6 @@ server          = /usr/sbin/in.tftpd
 server_args     = /tftpboot
 disable         = no
 }
-```
-c. Create a folder /tftpboot this should match whatever you gave in server_args. In my case  it is tftpboot. 
-```
-sandeeptux@sandeeplinux:~$ sudo mkdir /tftpboot
-sandeeptux@sandeeplinux:~$ sudo chmod -R 777 /tftpboot/
-sadeeptux@sandeeplinux:~$ sudo chown -R nobody /tftpboot/
 ```
 
 d. Restart the xinetd service. 
